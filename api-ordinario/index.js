@@ -1,29 +1,24 @@
 const express = require('express');
 
-const bodyParser = require('body-parser');
+const alumnosRoutes = require('./routes/alumnos');
 
+const profesoresRoutes = require('./routes/profesores');
 
-const app = express();
-
-app.use(bodyParser.json());
-
-
-// Rutas
-
-const estudiantesRoutes = require('./routes/estudiantes');
-
-const maestrosRoutes = require('./routes/maestros');
-
-const materiasRoutes = require('./routes/materias');
+const asignaturasRoutes = require('./routes/asignaturas');
 
 const calificacionesRoutes = require('./routes/calificaciones');
 
 
-app.use('/api/estudiantes', estudiantesRoutes);
+const app = express();
 
-app.use('/api/maestros', maestrosRoutes);
+app.use(express.json());
 
-app.use('/api/materias', materiasRoutes);
+
+app.use('/api/alumnos', alumnosRoutes);
+
+app.use('/api/profesores', profesoresRoutes);
+
+app.use('/api/asignaturas', asignaturasRoutes);
 
 app.use('/api/calificaciones', calificacionesRoutes);
 
