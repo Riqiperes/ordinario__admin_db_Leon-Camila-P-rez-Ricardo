@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('../db/connection');
 const { validateCalificacion } = require('../middlewares/validations');
 
-// Obtener todas las calificaciones
+
 router.get('/', async (req, res) => {
     try {
         const [rows] = await db.query('SELECT * FROM calificaciones');
@@ -13,7 +13,6 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Crear una nueva calificación
 router.post('/', validateCalificacion, async (req, res) => {
     const { alumno_id, asignatura_id, calificacion } = req.body;
 

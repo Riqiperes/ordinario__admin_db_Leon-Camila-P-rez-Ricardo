@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('../db/connection');
 const { validateAsignatura } = require('../middlewares/validations');
 
-// Obtener todas las asignaturas
+
 router.get('/', async (req, res) => {
     try {
         const [rows] = await db.query('SELECT * FROM asignaturas');
@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Crear una nueva asignatura
+
 router.post('/', validateAsignatura, async (req, res) => {
     const { nombre, profesor_id } = req.body;
 

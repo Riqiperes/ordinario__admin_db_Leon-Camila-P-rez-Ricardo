@@ -13,7 +13,7 @@ const validateAlumno = (req, res, next) => {
     next();
 };
 
-// Validación para `profesores`
+
 const validateProfesor = (req, res, next) => {
     const { nombre, especialidad } = req.body;
 
@@ -28,7 +28,7 @@ const validateProfesor = (req, res, next) => {
     next();
 };
 
-// Validación para `asignaturas`
+
 const validateAsignatura = (req, res, next) => {
     const { nombre, profesor_id } = req.body;
 
@@ -43,7 +43,7 @@ const validateAsignatura = (req, res, next) => {
     next();
 };
 
-// Validación para `calificaciones`
+
 const validateCalificacion = (req, res, next) => {
     const { alumno_id, asignatura_id, calificacion } = req.body;
 
@@ -62,7 +62,7 @@ const validateCalificacion = (req, res, next) => {
     next();
 };
 
-// Exportar los middlewares
+
 module.exports = {
     validateAlumno,
     validateProfesor,

@@ -1,22 +1,22 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db/connection'); // Conexión a la base de datos
-const { validateAlumno } = require('../middlewares/validations'); // Middleware para validaciones
+const db = require('../db/connection');
+const { validateAlumno } = require('../middlewares/validations'); 
 
 // **GET**: Obtener todos los alumnos
 router.get('/', async (req, res) => {
     try {
         const [rows] = await db.query('SELECT * FROM alumnos');
-        res.json(rows); // Devuelve los registros en formato JSON
+        res.json(rows); 
     } catch (err) {
         console.error('Error al obtener alumnos:', err);
         res.status(500).json({ error: 'Error al obtener alumnos' });
     }
 });
 
-// **POST**: Crear un nuevo alumno
+
 router.post('/', validateAlumno, async (req, res) => {
-    const { nombre, matricula } = req.body; // Datos enviados en el cuerpo de la solicitud
+    const { nombre, matricula } = req.body; 
 
     try {
         const [result] = await db.query(
@@ -27,7 +27,7 @@ router.post('/', validateAlumno, async (req, res) => {
             id: result.insertId, 
             nombre, 
             matricula 
-        }); // Devuelve el ID del nuevo alumno creado
+        });
     } catch (err) {
         console.error('Error al crear alumno:', err);
         if (err.code === 'ER_DUP_ENTRY') {
@@ -38,9 +38,9 @@ router.post('/', validateAlumno, async (req, res) => {
     }
 });
 
-// **DELETE**: Eliminar un alumno por su ID
+
 router.delete('/:id', async (req, res) => {
-    const { id } = req.params; // ID del alumno enviado en la URL
+    const { id } = req.params; 
 
     try {
         const [result] = await db.query('DELETE FROM alumnos WHERE id = ?', [id]);
@@ -54,10 +54,10 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-// **PUT**: Actualizar un alumno por su ID
+
 router.put('/:id', validateAlumno, async (req, res) => {
-    const { id } = req.params; // ID del alumno enviado en la URL
-    const { nombre, matricula } = req.body; // Datos enviados en el cuerpo de la solicitud
+    const { id } = req.params; 
+    const { nombre, matricula } = req.body; 
 
     try {
         const [result] = await db.query(

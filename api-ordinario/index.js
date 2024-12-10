@@ -8,20 +8,20 @@ const calificacionesRoutes = require('./routes/calificaciones');
 const app = express();
 app.use(bodyParser.json());
 
-// Rutas
+
 app.use('/alumnos', alumnosRoutes);
 app.use('/profesores', profesoresRoutes);
 app.use('/asignaturas', asignaturasRoutes);
 app.use('/calificaciones', calificacionesRoutes);
 
-// Error handler
+
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Internal Server Error');
 });
 
-// Servidor
-const PORT = 3000;
+
+const PORT = 3050;
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
